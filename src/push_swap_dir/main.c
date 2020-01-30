@@ -12,7 +12,7 @@ int		main(int argc, char *argv[])
 	{
 		split_a_mdn0(&sta, &stb);
 	}
-	print_st(sta);print_st(stb);
+	//print_st(sta);print_st(stb);
 	exit(0);
 	return 0;
 }
@@ -74,11 +74,4 @@ void	rotate(int *s, int len, int min)
 		}
 }
 
-void	error()
-{
-	char *s;
 
-	s = "ERROR\n";
-	write(2, s, ft_strlen(s));
-	exit (0);
-}

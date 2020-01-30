@@ -1,55 +1,28 @@
 
 #include "../../includes/push_swap.h"
 
-/*
-CHEKER:
--stack validation + error input
--reading & applying valid commands from stdin + command validation
--result output
-*/
-
-/*int find_startcheck(int ac,char **av)
-{
-	int	start;
-
-	start = 0;
-	while (av[start] && ft_strcmp(av[start], "./checker") != 0)
-		start++;
-	if (start == ac)
-	{
-		printf("not args for checker\n");
-		exit (0);
-	}
-	return (start + 1);
-}
-void	arr_print(int *arr)
-{
-	int i = 0;
-	while (arr[i])
-	{
-		printf("arr[%d] = %d\n",i, arr[i]);
-		i++;
-	}
-}*/
-
 int	main (int ac, char **av)
 {
 	int			*sta;
 	int			*stb;
-	t_vector	*instrs;
+	t_mlst		*cmds;
 
 	(ac == 1) ? exit(0) : 1;
-	//init_stacks(ac, av, &sta, &stb);
+	if (!(cmds = (t_mlst*)malloc(sizeof(t_mlst))))
+		error();
+	init_stacks(ac, av, &sta, &stb);
 
 	(sta)[0] = 1;
 	(stb)[0] = ac;
-	printf("checker\n");
-	/*read_instructions(instrs);
-	result(instrs, sta, stb);*/
+
+	read_i(cmds);
+	//printf("end_read\n");
+	result(cmds, sta, stb);
+	//print_st(sta);
 	exit(0);
 }
 
-/*int			read_instructions(int *cmds)
+int			read_i(t_mlst *cmds)
 {
 	char	*buf;
 	int		cmd_type;
@@ -58,20 +31,28 @@ int	main (int ac, char **av)
 
 	i = 0;
 	buf = NULL;
+	cmds->prev = NULL;
 	while (get_next_line(0, &buf) != 0)
 	{
+		if (ft_strlen(buf) == 0)
+			break ;
 		if (!(cmd_type = check_intruction(buf)))
+		{
+			//printf("cmd_type = %d\n", cmd_type);
 			error();
+		}
+		//printf(".%d\n", cmd_type);
 		(i > 0) ? add_next(&cmds) : 1;
 		cmds->num = cmd_type;
 		i++;
 		free(buf);
 		buf = NULL;
 	}
+	cmds->next = NULL;
 	return (cmd_type);
-}*/
+}
 
-/*int			check_intruction(const char *cmd)
+int			check_intruction(const char *cmd)
 {
 	int a;
 
@@ -87,39 +68,68 @@ int	main (int ac, char **av)
 	!ft_strcmp(cmd, "rra") ? (a = 9) : 1;
 	!ft_strcmp(cmd, "rrb") ? (a = 10) : 1;
 	!ft_strcmp(cmd, "rrr") ? (a = 11) : 1;
+//	printf("a = %d\n", a);
 	return (a);
 }
 
-void		result(t_vector	*instrs, int *sta, int *stb)
+void		result(t_mlst *cmds, int *sta, int *stb)
 {
+	int	i;
+	//printf("result\n");
 	while (cmds != NULL)
 	{
-		(cmds->num == 1) ? s_swap(&stack_one, 1, 0) : 1;
-		(cmds->num == 2) ? s_swap(&stack_two, 2, 0) : 1;
-		(cmds->num == 3) ? s_swap_both(&stack_one, &stack_two, 0) : 1;
-		(cmds->num == 4) ? s_push(&stack_one, &stack_two, 1, 0) : 1;
-		(cmds->num == 5) ? s_push(&stack_two, &stack_one, 2, 0) : 1;
-		(cmds->num == 6) ? s_rotate(&stack_one, 1, 0) : 1;
-		(cmds->num == 7) ? s_rotate(&stack_two, 2, 0) : 1;
-		(cmds->num == 8) ? s_rotate_both(&stack_one, &stack_two, 0) : 1;
-		(cmds->num == 9) ? s_rev_rotate(&stack_one, 1, 0) : 1;
-		(cmds->num == 10) ? s_rev_rotate(&stack_two, 2, 0) : 1;
-		(cmds->num == 11) ? s_rev_rotate_both(&stack_one, &stack_two, 0) : 1;
+		//printf("cmds->num = %d\n", cmds->num);
+
+		(cmds->num == 1) ? swap_stack(sta) : 1;
+		(cmds->num == 2) ? swap_stack(stb) : 1;
+		(cmds->num == 3) ? swap_stacks(sta, stb) : 1;
+		(cmds->num == 4) ? push_stack(sta, stb) : 1;
+		(cmds->num == 5) ? push_stack(stb, sta) : 1;
+		(cmds->num == 6) ? rot_stack(sta) : 1;
+		(cmds->num == 7) ? rot_stack(stb) : 1;
+		(cmds->num == 8) ? rot_stacks(sta, stb) : 1;
+		(cmds->num == 9) ? revrot_stack(sta) : 1;
+		(cmds->num == 10) ? revrot_stack(stb) : 1;
+		(cmds->num == 11) ? revrot_stacks(sta, stb) : 1;
 		cmds = cmds->next;
 	}
-	if (stack_two != NULL)
+	//print_st(sta);print_st(stb);
+	if (stb[0] != g_members + 1)
 		answer(0);
-	while (stack_one->next != NULL)
+	i = sta[0];
+	while (i < g_members)
 	{
-		if (stack_one->num > stack_one->next->num)
+		//printf("%d_vs_%d\n",sta[i],sta[i+1]);
+		if (sta[i] > sta[i + 1])
 			answer(0);
-		stack_one = stack_one->next;
+		i++;
 	}
 	answer(1);
 }
 
-void		answer(_Bool var)
+void		answer(int var)
 {
-	var ? ft_printf("OK\n") : ft_printf("KO\n");
+	//printf("answer = %d\n", var);
+	if(var == 1)
+		ft_putstr("OK\n");
+	else if (var == 0)
+		ft_putstr("KO\n");
 	exit(0);
-}*/
+}
+
+void	add_next(t_mlst **curr)
+{
+	t_mlst *buf;
+
+	//printf("add_next\n");
+	buf = *curr;
+	if (!((*curr)->next = (t_mlst*)malloc(sizeof(t_mlst))))
+	{
+		//printf("malloc_next\n");
+		error();
+	}
+	*curr = (*curr)->next;
+	(*curr)->prev = buf;
+	(*curr)->next = NULL;
+	(*curr)->num = 0;
+}

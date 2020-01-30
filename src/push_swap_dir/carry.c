@@ -145,7 +145,7 @@ void	parse_carry_a(int *sta, int n)
 	//printf("min = %d___max = %d\n", *min,  *max);
 	if ((max - min) == 1 && n > 2)
 	{
-		if ((min == &(sta[sta[0]])))
+		if (min == &(sta[sta[0]]))
 		{
 			//printf("1_1\n");
 			rot_stack(sta);

@@ -16,7 +16,7 @@ void	check_repeat(int *st, int val)
 	}
 }
 
-int		check_arg(int *sta, char **curr, int *len)
+void		check_arg(int *sta, char **curr, int *len)
 {
 	int			val;
 	int			k;
@@ -78,4 +78,13 @@ void	init_stacks(int argc, char *argv[], int **sta, int **stb)
 		i++;
 	}//printf("\n");
 
+}
+
+void	error()
+{
+	char *s;
+
+	s = "ERROR\n";
+	write(2, s, ft_strlen(s));
+	exit (0);
 }

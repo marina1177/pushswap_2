@@ -20,11 +20,20 @@
 
 # include <stdio.h>
 
+typedef struct s_mlst	t_mlst;
+
+struct		s_mlst
+{
+	int		num;
+	t_mlst	*prev;
+	t_mlst	*next;
+};
+
 /////////////////////COMMON//////////////////////////
 
 // common_1.c
 void	check_repeat(int *st, int val);
-int		check_arg(int *sta, char **curr, int *len);
+void	check_arg(int *sta, char **curr, int *len);
 int		fill_sta(int ac, char **av, int *sta);
 void	init_stacks(int argc, char *argv[], int **sta, int **stb);
 
@@ -71,19 +80,14 @@ int		check_bottom_b(int *stb, int rem, int median);
 /*
 **checker.c
 */
-int			check_intruction(const char *cmd);
-void		result(t_vector	*instrs, int *sta, int *stb);
-void		answer(_Bool var);
+int		check_intruction(const char *cmd);
+void	result(t_mlst *cmds, int *sta, int *stb);
+void	answer(int var);
 
-void	valid_instr(char *instr, int off, t_vector	*instrs);
-int get_offset(char	*instr);
-void	read_instructions(t_vector	*instrs);
+int		read_i(t_mlst *cmds);
+void	add_next(t_mlst **curr);
 
 
-int							*g_a;
-int							*g_b;
-//int							*num_b;
-//int							*num_a;
 int							g_members;
 
 #endif

@@ -35,6 +35,16 @@ typedef unsigned short	t_2b;
 # define REVROT_B		(t_1b)0b010
 # define REVROT_AB		(t_1b)0b001
 
+
+
+typedef struct s_mlst	t_mlst;
+
+struct		s_mlst
+{
+	int		num;
+	t_mlst	*next;
+};
+
 /*
 **checker.c
 */
@@ -42,10 +52,13 @@ int			check_intruction(const char *cmd);
 void		result(t_vector	*instrs, int *sta, int *stb);
 void		answer(_Bool var);
 
+
 void	valid_instr(char *instr, int off, t_vector	*instrs);
-int get_offset(char	*instr);
+int 		get_offset(char	*instr);
 void	read_instructions(t_vector	*instrs);
 
+
+int			read_i(t_list *cmds)
 
 
 #endif

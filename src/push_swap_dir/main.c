@@ -7,29 +7,23 @@ int		main(int argc, char *argv[])
 	int	i;
 
 	init_stacks(argc, argv, &sta, &stb);
-
 	if (!ordered(sta))
 	{
-		split_a_mdn0(&sta, &stb);
+		sorting(&sta, &stb);
 	}
-	//print_st(sta);print_st(stb);
 	exit(0);
 	return 0;
 }
 
 int		ordered(int *s)
 {
-	int		buf[3];
+	int		buf[4];
 	int		*tmp;
 	int		i;
 
 	buf[0] = s[g_members];
 	buf[1] = 0;
-
-	/*printf("buf[0] = %d\n", buf[0]);
-	printf("buf[1] = %d\n", buf[1]);
-	printf("s[0] = %d\n", s[0]);
-	printf("g_members = %d\n", g_members);*/
+	buf[3] = 0;
 	i = s[0];
 	while (i <= g_members)
 	{
@@ -54,7 +48,6 @@ void	rotate(int *s, int len, int min)
 
 	tmp = &(s[s[0]]);
 	pos = 0;
-
 	while (*tmp != min)
 	{
 		pos++;
@@ -64,13 +57,13 @@ void	rotate(int *s, int len, int min)
 		while (s[s[0]] != min)
 		{
 			revrot_stack(s);
-			print_op("rra\n");//print_st(s);
+			print_op("rra\n");
 		}
 	else
 		while (s[s[0]] != min)
 		{
-				rot_stack(s);
-				print_op("ra\n");//print_st(s);
+			rot_stack(s);
+			print_op("ra\n");
 		}
 }
 

@@ -1,16 +1,14 @@
 #include "../../includes/push_swap.h"
 
-void	sortcarry(int *sta, int n)
+void	sortcarry_a(int *sta, int n)
 {
 	int	*max;
 	int	*min;
 	int	i;
 
-	//print_st(sta);
 	i = sta[0];
 	min = &(sta[i]);
 	max = &(sta[i]);
-
 	while(i <= n + sta[0] - 1)
 	{
 		if(sta[i] > *max)
@@ -19,64 +17,55 @@ void	sortcarry(int *sta, int n)
 			min = &(sta[i]);
 		i++;
 	}
-	/*printf("min = %d___max = %d\n", *min,  *max);
-	printf("max - min = %ld\n", (max - min));*/
 	if((max - min) == 1 && n > 2)
 	{
 		if((min - &(sta[sta[0]])) > 0)
 		{
-			//printf("1_1\n");
 			swap_stack(sta);
-			print_op("sa\n");//print_st(sta);
+			print_op("sa\n");
 		}
 		else if((min - &(sta[sta[0]])) == 0)
 		{
-			//printf("1_2\n");
 			rot_stack(sta);
-			print_op("ra\n");//print_st(sta);
+			print_op("ra\n");
 			swap_stack(sta);
-			print_op("sa\n");//print_st(sta);
+			print_op("sa\n");
 			revrot_stack(sta);
-			print_op("rra\n");//print_st(sta);
+			print_op("rra\n");
 		}
 	}
 	else if ((max - min) == -1 && n > 2)
 	{
 		if((max - &(sta[sta[0]])) > 0)
 		{
-			//printf("2_1\n");
 			revrot_stack(sta);
-			print_op("rra\n");//print_st(sta);
+			print_op("rra\n");
 		}
 		else if((max - &(sta[sta[0]])) == 0)
 		{
-			//printf("2_2\n");
 			rot_stack(sta);
-			print_op("ra\n");//print_st(sta);
+			print_op("ra\n");
 		}
 	}
 	else if ((max - min) == -1 && n == 2)
 	{
-		//printf("3_\n");
 		swap_stack(sta);
-		print_op("sa\n");//print_st(sta);
+		print_op("sa\n");
 	}
 	else if ((max - min) == -2 && n > 2)
 	{
-		//printf("4_\n");
 		rot_stack(sta);
-		print_op("ra\n");//print_st(sta);
+		print_op("ra\n");
 		swap_stack(sta);
-		print_op("sa\n");//print_st(sta);
+		print_op("sa\n");
 	}
 	else if ((max - min) == 2 && n > 2)
 	{
-		//printf("5_\n");
 		return ;
 	}
+	//printf("end_sortcarry\n");
 	return ;
 }
-
 
 void	pushcarry(int *sta, int *stb, int n)
 {
@@ -84,6 +73,7 @@ void	pushcarry(int *sta, int *stb, int n)
 	int	*min;
 	int	i;
 
+	//printf("pushcarry\n");
 	i = stb[0];
 	min = &(stb[i]);
 	max = &(stb[i]);
@@ -122,6 +112,7 @@ void	pushcarry(int *sta, int *stb, int n)
 	}
 	push_stack(sta, stb);
 	print_op("pa\n");//print_st(sta);
+//	printf("end_pushcarry\n");
 }
 
 void	parse_carry_a(int *sta, int n)
@@ -130,6 +121,7 @@ void	parse_carry_a(int *sta, int n)
 	int	*min;
 	int	i;
 
+	//printf("parse_carry_a\n");
 	i = sta[0];
 	min = &(sta[i]);
 	max = &(sta[i]);
@@ -228,6 +220,7 @@ void	parse_carry_a(int *sta, int n)
 		//printf("5_\n");
 		return ;
 	}
+//	printf("end_parse_carry_a\n");
 	return ;
 }
 
@@ -235,10 +228,6 @@ int		check_bottom_b(int *stb, int rem, int median)
 {
 	int		i;
 	int		cnt;
-
-	/*printf("stb[0] = %d\n", stb[0]);
-	printf("rem = %d\n", rem);
-	printf("stb[0] + rem - 1= %d\n", stb[0] + rem -1);*/
 
 	i = stb[0] + 1;
 	cnt = 0;
@@ -250,6 +239,23 @@ int		check_bottom_b(int *stb, int rem, int median)
 		}
 		i++;
 	}
-	//printf("cnt = %d\n", cnt);
+	return (cnt);
+}
+
+int		check_bottom_a(int *sta, int rem, int median)
+{
+	int		i;
+	int		cnt;
+
+	i = sta[0] + 1;
+	cnt = 0;
+	while (i <= sta[0] + rem - 1)
+	{
+		if (sta[i] < median)
+		{
+			cnt++;
+		}
+		i++;
+	}
 	return (cnt);
 }

@@ -6,7 +6,7 @@
 #    By: bcharity <bcharity@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/26 16:23:46 by bcharity          #+#    #+#              #
-#    Updated: 2020/01/30 07:10:37 by bcharity         ###   ########.fr        #
+#    Updated: 2020/02/01 00:55:05 by bcharity         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,8 +36,10 @@ SRC_DIR_C = src/checker_dir/
 #################### PUSH_SWAP FILES #################
 SRC_P =			 main.c \
 				carry.c \
-				divide_sta.c \
-				median.c \
+				sorting_1.c \
+				sorting_2.c \
+				median_1.c \
+				median_2.c
 
 SRC_DIR_P = src/push_swap_dir/
 ######################################################

@@ -6,7 +6,7 @@
 /*   By: bcharity <bcharity@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 20:29:45 by bcharity          #+#    #+#             */
-/*   Updated: 2020/02/01 00:58:18 by bcharity         ###   ########.fr       */
+/*   Updated: 2020/02/02 00:07:13 by bcharity         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,46 @@ int		sorting(int **sta, int **stb)
 	int	num_b[g_members/2];
 
 	i = begin_pyramid(sta, stb, &(num_b[0]));
-	sortcarry_a(*sta, i);
+	sortrem_a(*sta, i);
 	parse_b(*sta, *stb, num_b);
 	return(0);
 }
+
+int		check_bottom_b(int *stb, int rem, int median)
+{
+	int		i;
+	int		cnt;
+
+	i = stb[0] + 1;
+	cnt = 0;
+	while (i <= stb[0] + rem - 1)
+	{
+		if (stb[i] >= median)
+		{
+			cnt++;
+		}
+		i++;
+	}
+	return (cnt);
+}
+
+int		check_bottom_a(int *sta, int rem, int median)
+{
+	int		i;
+	int		cnt;
+
+	i = sta[0] + 1;
+	cnt = 0;
+	while (i <= sta[0] + rem - 1)
+	{
+		if (sta[i] < median)
+		{
+			cnt++;
+		}
+		i++;
+	}
+	return (cnt);
+}
+
 
 

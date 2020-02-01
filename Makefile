@@ -6,7 +6,7 @@
 #    By: bcharity <bcharity@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/26 16:23:46 by bcharity          #+#    #+#              #
-#    Updated: 2020/02/01 00:55:05 by bcharity         ###   ########.fr        #
+#    Updated: 2020/02/01 23:21:50 by bcharity         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ HEADER_DIR = includes/
 
 LIB = -L ./libft -lft
 LIBPATH = libft/
-################ COMMON FILES ##################
+################ COMMON FILES ########################
 SRC_COM =		common_1.c \
 				functions.c \
 				rot_functions.c
@@ -28,14 +28,14 @@ SRC_COM =		common_1.c \
 SRC_DIR_COM =	src/common/
 #################### CHEKER FILES ####################
 SRC_C = checker.c
-		#read_instructions.c
 
 SRC_DIR_C = src/checker_dir/
 ######################################################
 
 #################### PUSH_SWAP FILES #################
 SRC_P =			 main.c \
-				carry.c \
+				remind_1.c \
+				remind_2.c \
 				sorting_1.c \
 				sorting_2.c \
 				median_1.c \

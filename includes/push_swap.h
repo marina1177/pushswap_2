@@ -78,7 +78,7 @@ void		error();
 ** median_1.c
 */
 int			get_m(int *st, int n);
-int			sel_m_2(int *a, int n, int *var);
+void		sel_m_2(int *a, int n, int *var);
 int			sel_m(int *a, int i, int n);
 
 /*
@@ -95,6 +95,9 @@ int			devide_a(int **sta, int **stb, int m);
 int			begin_pyramid(int **sta, int **stb, int *arr);
 int			sorting(int **sta, int **stb);
 
+int			check_bottom_b(int *stb, int rem, int median);
+int			check_bottom_a(int *sta, int rem, int median);
+
 /*
 ** sorting_2.c
 */
@@ -106,14 +109,22 @@ void		parse_b(int *sta, int *stb, int *num_b);
 
 
 /*
-** carry.c
+** remind_1.c
 */
-void		sortcarry_a(int *sta, int n);
+void		sortrem_op2(int *sta, int **extr);
+void		sortrem_op1(int *sta, int **extr);
+void		sortrem_a(int *sta, int n);
+void		pushcarry_op(int *sta, int *stb);
 void		pushcarry(int *sta, int *stb, int n);
-void		parse_carry_a(int *sta, int n);
 
-int			check_bottom_b(int *stb, int rem, int median);
-int			check_bottom_a(int *sta, int rem, int median);
+/*
+** remind_2.c
+*/
+void		extrem_pnt(int *st, int n, int **extr);
+void		parsecarry_op3(int *sta, int **extr);
+void		parsecarry_op2(int *sta, int **extr);
+void		parsecarry_op1(int *sta, int **extr);
+void		parse_carry_a(int *sta, int n);
 
 /*
 *************************CHECKER***********************
@@ -126,7 +137,6 @@ int			check_bottom_a(int *sta, int rem, int median);
 int			check_intruction(const char *cmd);
 void		result(t_mlst *cmds, int *sta, int *stb);
 void		answer(int var);
-
 int			read_i(t_mlst *cmds);
 void		add_next(t_mlst **curr);
 

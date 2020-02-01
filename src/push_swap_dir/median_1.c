@@ -6,7 +6,7 @@
 /*   By: bcharity <bcharity@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 17:30:32 by bcharity          #+#    #+#             */
-/*   Updated: 2020/02/01 00:38:38 by bcharity         ###   ########.fr       */
+/*   Updated: 2020/02/01 14:02:03 by bcharity         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		get_m(int *st, int n)
 	return (sel_m(tmp, size / 2, size));
 }
 
-int		sel_m_2(int *a, int n, int *var)
+void	sel_m_2(int *a, int n, int *var)
 {
 	(var)[0] = 0;
 	(var)[1] = 0;
@@ -62,8 +62,7 @@ int		sel_m(int *a, int i, int n)
 		return (var[4]);
 	else if (i < var[5])
 		return (sel_m(a, i, var[5]));
-	else
-		return (sel_m(a + var[5], i - var[5], n - var[5]));
+	return (sel_m(a + var[5], i - var[5], n - var[5]));
 }
 
 

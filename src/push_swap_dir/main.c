@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bcharity <bcharity@student.21-school.ru    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/01 14:11:11 by bcharity          #+#    #+#             */
+/*   Updated: 2020/02/01 14:15:57 by bcharity         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/push_swap.h"
 
 int		main(int argc, char *argv[])
@@ -12,7 +24,6 @@ int		main(int argc, char *argv[])
 		sorting(&sta, &stb);
 	}
 	exit(0);
-	return 0;
 }
 
 int		ordered(int *s)

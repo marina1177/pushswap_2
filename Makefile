@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bcharity <bcharity@student.21-school.ru    +#+  +:+       +#+         #
+#    By: bcharity <bcharity@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/26 16:23:46 by bcharity          #+#    #+#              #
-#    Updated: 2020/02/01 23:21:50 by bcharity         ###   ########.fr        #
+#    Updated: 2020/02/02 12:40:32 by bcharity         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ LIB = -L ./libft -lft
 LIBPATH = libft/
 ################ COMMON FILES ########################
 SRC_COM =		common_1.c \
+				common_2.c \
 				functions.c \
 				rot_functions.c
 

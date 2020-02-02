@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vecgetlast.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzei <wzei@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bcharity <bcharity@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 21:26:54 by wzei              #+#    #+#             */
-/*   Updated: 2019/09/24 21:35:34 by wzei             ###   ########.fr       */
+/*   Updated: 2020/01/30 11:34:07 by bcharity         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void			*ft_vecgetlast(t_vector *v)
 {
-    return (ft_vecget(v, v->count - 1));
+	return (ft_vecget(v, v->count - 1));
 }

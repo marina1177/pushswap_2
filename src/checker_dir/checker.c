@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bcharity <bcharity@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: bcharity <bcharity@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 17:16:21 by bcharity          #+#    #+#             */
-/*   Updated: 2020/02/01 13:58:21 by bcharity         ###   ########.fr       */
+/*   Updated: 2020/02/02 12:52:10 by bcharity         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-int	main (int ac, char **av)
+int			main(int ac, char **av)
 {
 	int			*sta;
 	int			*stb;
@@ -22,10 +22,8 @@ int	main (int ac, char **av)
 	if (!(cmds = (t_mlst*)malloc(sizeof(t_mlst))))
 		error();
 	init_stacks(ac, av, &sta, &stb);
-
 	(sta)[0] = 1;
 	(stb)[0] = g_members + 1;
-
 	read_i(cmds);
 	result(cmds, sta, stb);
 	exit(0);
@@ -58,8 +56,7 @@ int			read_i(t_mlst *cmds)
 
 int			check_intruction(const char *cmd)
 {
-	int a;
-
+	int	a;
 
 	a = 0;
 	!ft_strcmp(cmd, "sa") ? (a = 1) : 1;
@@ -79,6 +76,7 @@ int			check_intruction(const char *cmd)
 void		result(t_mlst *cmds, int *sta, int *stb)
 {
 	int	i;
+
 	while (cmds != NULL)
 	{
 		(cmds->num == 1) ? swap_stack(sta) : 1;
@@ -94,6 +92,13 @@ void		result(t_mlst *cmds, int *sta, int *stb)
 		(cmds->num == 11) ? revrot_stacks(sta, stb) : 1;
 		cmds = cmds->next;
 	}
+	get_answer(sta, stb);
+}
+
+void		get_answer(int *sta, int *stb)
+{
+	int	i;
+
 	if (stb[0] != g_members + 1)
 	{
 		answer(0);
@@ -106,28 +111,4 @@ void		result(t_mlst *cmds, int *sta, int *stb)
 		i++;
 	}
 	answer(1);
-}
-
-void		answer(int var)
-{
-	if(var == 1)
-		ft_putstr("OK\n");
-	else if (var == 0)
-		ft_putstr("KO\n");
-	exit(0);
-}
-
-void	add_next(t_mlst **curr)
-{
-	t_mlst *buf;
-
-	buf = *curr;
-	if (!((*curr)->next = (t_mlst*)malloc(sizeof(t_mlst))))
-	{
-		error();
-	}
-	*curr = (*curr)->next;
-	(*curr)->prev = buf;
-	(*curr)->next = NULL;
-	(*curr)->num = 0;
 }

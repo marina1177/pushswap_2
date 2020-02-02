@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rot_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bcharity <bcharity@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: bcharity <bcharity@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 17:19:39 by bcharity          #+#    #+#             */
-/*   Updated: 2020/01/31 17:19:41 by bcharity         ###   ########.fr       */
+/*   Updated: 2020/02/02 12:58:32 by bcharity         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	rot_stack(int *st)
 	tmp = st[i];
 	while (i <= size)
 	{
-		st[i] = st[i+1];
+		st[i] = st[i + 1];
 		i++;
 	}
 	st[g_members] = tmp;
-
 }
+
 void	rot_stacks(int *st1, int *st2)
 {
 	rot_stack(st1);
@@ -43,9 +43,9 @@ void	revrot_stack(int *st)
 
 	size = g_members;
 	tmp = st[size];
-	while ( size > st[0] )
+	while (size > st[0])
 	{
-		st[size] = st[size-1];
+		st[size] = st[size - 1];
 		size--;
 	}
 	st[st[0]] = tmp;

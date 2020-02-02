@@ -3,34 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   common_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bcharity <bcharity@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: bcharity <bcharity@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 17:19:18 by bcharity          #+#    #+#             */
-/*   Updated: 2020/01/31 17:19:23 by bcharity         ###   ########.fr       */
+/*   Updated: 2020/02/02 12:55:34 by bcharity         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-size_t		count_word(char const *s, char c)
-{
-	char	*p;
-	size_t	lns;
-
-	if (!s)
-		return (0);
-	lns = 0;
-	p = (char*)s;
-	while (*p != '\0')
-	{
-		if (*p != c && (*(p + 1) == c || *(p + 1) == '\0'))
-			lns++;
-		p++;
-	}
-	return (lns);
-}
-
-void	check_repeat(int *st, int val)
+void		check_repeat(int *st, int val)
 {
 	int	i;
 
@@ -49,10 +31,10 @@ void		check_arg(int *sta, char **curr, int *len)
 	int			k;
 
 	k = 0;
-	while(curr[k] != NULL)
+	while (curr[k] != NULL)
 	{
 		val = ft_atoi(curr[k]);
-		if(*len > 0)
+		if (*len > 0)
 		{
 			check_repeat(sta, val);
 		}
@@ -65,7 +47,7 @@ void		check_arg(int *sta, char **curr, int *len)
 	free(curr);
 }
 
-int		calc_members(int ac, char **av)
+int			calc_members(int ac, char **av)
 {
 	int		i;
 	int		num;
@@ -78,10 +60,10 @@ int		calc_members(int ac, char **av)
 		num += count_word(av[i], ' ');
 		i++;
 	}
-	return(num);
+	return (num);
 }
 
-int		fill_sta(int ac, char **av, int *sta)
+int			fill_sta(int ac, char **av, int *sta)
 {
 	int		i;
 	int		k;
@@ -100,14 +82,14 @@ int		fill_sta(int ac, char **av, int *sta)
 	return (num);
 }
 
-void	init_stacks(int argc, char *argv[], int **sta, int **stb)
+void		init_stacks(int argc, char *argv[], int **sta, int **stb)
 {
 	int	i;
 	int	flg;
 
-	g_members =	calc_members(argc, argv);
-	if (!(*sta = (int*)malloc(sizeof(int)*(g_members + 1)))
-		|| !(*stb = (int*)malloc(sizeof(int)*(g_members + 1))))
+	g_members = calc_members(argc, argv);
+	if (!(*sta = (int*)malloc(sizeof(int) * (g_members + 1)))
+		|| !(*stb = (int*)malloc(sizeof(int) * (g_members + 1))))
 		error();
 	(*sta)[0] = 1;
 	fill_sta(argc, argv, *sta);
@@ -119,13 +101,4 @@ void	init_stacks(int argc, char *argv[], int **sta, int **stb)
 		(*stb)[i] = 0;
 		i++;
 	}
-}
-
-void	error()
-{
-	char *s;
-
-	s = "Error\n";
-	write(2, s, ft_strlen(s));
-	exit (0);
 }

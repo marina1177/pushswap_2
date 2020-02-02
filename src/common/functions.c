@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bcharity <bcharity@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: bcharity <bcharity@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 17:19:31 by bcharity          #+#    #+#             */
-/*   Updated: 2020/01/31 17:19:33 by bcharity         ###   ########.fr       */
+/*   Updated: 2020/02/02 12:53:47 by bcharity         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,4 @@ void	push_stack(int *st1, int *st2)
 void	print_op(char *op)
 {
 	write(1, op, ft_strlen(op));
-}
-
-void	print_st(int *st)
-{
-  int	size;
-
-  printf("printst_");
-  for (int i = st[0]; i <= g_members; i++)
-    printf("_%d_", st[i]);
-  printf("\n");
 }

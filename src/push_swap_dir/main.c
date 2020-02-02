@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bcharity <bcharity@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: bcharity <bcharity@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 14:11:11 by bcharity          #+#    #+#             */
-/*   Updated: 2020/02/01 14:15:57 by bcharity         ###   ########.fr       */
+/*   Updated: 2020/02/02 17:42:00 by bcharity         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		ordered(int *s)
 
 void	rotate(int *s, int len, int min)
 {
-	int	*tmp;
+	int		*tmp;
 	int		pos;
 
 	tmp = &(s[s[0]]);
@@ -78,4 +78,13 @@ void	rotate(int *s, int len, int min)
 		}
 }
 
+void	print_st(int *st)
+{
+  int	size;
+
+  printf("printst_");
+  for (int i = st[0]; i <= g_members; i++)
+    printf("_%d_", st[i]);
+  printf("\n");
+}
 

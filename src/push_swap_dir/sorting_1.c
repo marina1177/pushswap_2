@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bcharity <bcharity@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: bcharity <bcharity@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 20:29:45 by bcharity          #+#    #+#             */
-/*   Updated: 2020/02/02 00:07:13 by bcharity         ###   ########.fr       */
+/*   Updated: 2020/02/02 17:42:46 by bcharity         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ int		devide_a(int **sta, int **stb, int m)
 
 	count = 0;
 	i = (*sta)[0];
-	while(i <= g_members)
+	while (i <= g_members)
 	{
 		k = (*sta)[0];
-		if ((*sta)[k] >= m )
+		if ((*sta)[k] >= m)
 		{
 			if (check_bottom_a(*sta, g_members - count, m) == 0)
 				break ;
 			rot_stack(*sta);
 			print_op("ra\n");
 		}
-		else if ((*sta)[k] < m )
+		else if ((*sta)[k] < m)
 		{
 			push_stack(*stb, *sta);
 			print_op("pb\n");
@@ -38,7 +38,7 @@ int		devide_a(int **sta, int **stb, int m)
 		}
 		i++;
 	}
-	return(count);
+	return (count);
 }
 
 int		begin_pyramid(int **sta, int **stb, int *arr)
@@ -49,7 +49,7 @@ int		begin_pyramid(int **sta, int **stb, int *arr)
 
 	i = 0;
 	num_b = arr;
-	while(i < (g_members / 2))
+	while (i < (g_members / 2))
 	{
 		num_b[i] = 0;
 		i++;
@@ -60,18 +60,22 @@ int		begin_pyramid(int **sta, int **stb, int *arr)
 		num_b[0]++;
 		num_b[num_b[0]] = devide_a(sta, stb, median);
 	}
-	return(i);
+	return (i);
 }
 
 int		sorting(int **sta, int **stb)
 {
 	int	i;
-	int	num_b[g_members/2];
+	int	num_b[g_members / 2];
 
+	//print_st(*sta);print_st(*stb);
 	i = begin_pyramid(sta, stb, &(num_b[0]));
+	//print_st(*sta);print_st(*stb);
+
 	sortrem_a(*sta, i);
 	parse_b(*sta, *stb, num_b);
-	return(0);
+	print_st(*sta);print_st(*stb);
+	return (0);
 }
 
 int		check_bottom_b(int *stb, int rem, int median)
@@ -109,6 +113,3 @@ int		check_bottom_a(int *sta, int rem, int median)
 	}
 	return (cnt);
 }
-
-
-

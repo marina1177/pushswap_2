@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bcharity <bcharity@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bcharity <bcharity@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 18:52:44 by bcharity          #+#    #+#             */
-/*   Updated: 2020/02/02 17:42:21 by bcharity         ###   ########.fr       */
+/*   Updated: 2020/02/02 22:36:37 by bcharity         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@ int		separate_a(int *sta, int *stb, int *num_b, int *num_a)
 {
 	int	ma;
 	int	count_a;
-	//int	*enda;
 	int	i;
 	int	enda;
 
-	//printf("separate_a\n");
-	//print_st(sta);print_st(stb);
+	printf("separate_a\n");
+	print_st(sta);print_st(stb);
 
 	//enda = &(sta[sta[0] + *num_a - 1]);
 	enda = sta[0] + *num_a - 1;
@@ -57,8 +56,8 @@ void	parse_a(int *sta, int *stb, int *num_b, int num_a)
 	int	count_a;
 	int	*enda;
 
-	/*printf("parse_a\n");
-	printf("num_a = %d\n", num_a);*/
+	printf("parse_a\n");
+	printf("num_a = %d\n", num_a);
 	if (num_a <= 3)
 	{
 		parse_carry_a(sta, num_a);
@@ -96,6 +95,8 @@ void	separate_b(int *sta, int *stb, int *num_b, int cnt[2])
 {
 	int	var[4];
 
+	printf("separate_b\n");
+
 	var[3] = num_b[num_b[0]];
 	var[2] = stb[0] + var[3] - 1;
 	var[1] = get_m(stb, stb[0] + var[3] - 1);
@@ -128,8 +129,13 @@ void	parse_b(int *sta, int *stb, int *num_b)
 	int	endb;
 	int	count[2];
 
+	printf("parse_b\n");
+	printf("num_b[0] = %d\n", num_b[0]);
+
 	while (num_b[0] > 0)
 	{
+		printf("num_b[num_b[0]] = %d\n", num_b[num_b[0]]);
+
 		if (num_b[num_b[0]] <= 3)
 		{
 			pushcarry(sta, stb, num_b[num_b[0]]);

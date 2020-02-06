@@ -6,7 +6,7 @@
 #    By: bcharity <bcharity@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/11 10:49:23 by bcharity          #+#    #+#              #
-#    Updated: 2019/11/02 15:54:56 by bcharity         ###   ########.fr        #
+#    Updated: 2020/02/03 15:50:24 by bcharity         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,34 +25,31 @@ SRCS =  ft_atoi.c ft_bzero.c ft_isascii.c ft_isalnum.c  ft_isalpha.c ft_isdigit.
 		ft_vecnew.c ft_veccnt.c ft_vecadd.c ft_vecset.c ft_vecget.c \
 		ft_vecgetfirst.c ft_vecgetlast.c ft_vecdel.c ft_vecfree.c ft_vecsel.c
 
+SRC_DIR = src/
 
-OBJ = 	ft_atoi.o  ft_bzero.o ft_isascii.o ft_isalnum.o ft_isalpha.o ft_isdigit.o ft_isprint.o ft_memccpy.o\
-		ft_memchr.o  ft_memcmp.o ft_memcpy.o ft_memmove.o ft_memset.o ft_putchar.o ft_strcat.o ft_strchr.o\
-		ft_strcmp.o  ft_strcpy.o ft_strdup.o ft_strlcat.o ft_strlen.o ft_strncat.o ft_strncmp.o ft_strncpy.o\
-		ft_strnstr.o  ft_strrchr.o ft_strstr.o ft_tolower.o ft_toupper.o\
-		ft_memalloc.o ft_memdel.o ft_strnew.o ft_strdel.o ft_strclr.o ft_striteri.o ft_striter.o \
-	   	ft_strmap.o	ft_strmapi.o ft_strequ.o ft_strnequ.o ft_strsub.o ft_strjoin.o ft_strtrim.o ft_strsplit.o\
-		ft_itoa.o ft_putchar.o ft_putstr.o ft_putendl.o ft_putnbr.o ft_putchar_fd.o ft_putstr_fd.o\
-		ft_putendl_fd.o ft_putnbr_fd.o ft_lstnew.o ft_lstdelone.o ft_lstdel.o ft_lstadd.o ft_lstiter.o\
-		ft_lstmap.o ft_freemem.o ft_strreverse.o ft_strcopyuntil.o ft_lstdel_contentsize.o \
-		ft_lstcheck_contentsize.o ft_countwords_withnullstr.o ft_strndup.o ft_stack_fun.o \
-		ft_reverse_int.o get_next_line.o \
-		ft_vecnew.o ft_veccnt.o ft_vecadd.o ft_vecset.o ft_vecget.o \
-		ft_vecgetfirst.o ft_vecgetlast.o ft_vecdel.o ft_vecfree.o ft_vecsel.o
+OBJ = $(patsubst %.c,%.o,$(SRCS))
+
+OBJ_DIR_COMMON = obj/
+OBJ_DIR = $(OBJ_DIR_COMMON)o_libft/
 
 FLAGS = -Wall -Wextra -Werror
-INCLUDES = ./
+HEADER_DIR = includes/
+
+.PHONY: all clean fclean re
+
 all: $(NAME)
 
-$(NAME):
-	 gcc -c $(FLAGS) -I $(INCLUDES)  -c $(SRCS)
-	 ar rc $(NAME) $(OBJ)
-	 ranlib $(NAME)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@mkdir -p $(OBJ_DIR)
+	@gcc -c $< -o $@ -I $(HEADER_DIR)
+
+$(NAME): $(addprefix $(OBJ_DIR),$(OBJ))
+	 @ar rcs $(NAME) $(addprefix $(OBJ_DIR),$(OBJ))
 
 clean:
-	rm -f $(OBJ)
+	@rm -Rf $(OBJ_DIR_COMMON)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME);
 
-re: fclean	all
+re: fclean all
